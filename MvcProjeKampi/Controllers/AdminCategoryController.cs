@@ -17,7 +17,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Index()
         {
-            var categoryvalues = cm.GetList();
+            var categoryvalues = cm.GetList().Where(x => x.CategoryStatus == true).ToList();
             return View(categoryvalues);
         }
 
@@ -34,6 +34,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = validator.Validate(p);
             if (results.IsValid)
             {
+                p.CategoryStatus = true;
                 cm.CategoryAdd(p);
                 return RedirectToAction("Index");
             }
@@ -61,11 +62,11 @@ namespace MvcProjeKampi.Controllers
             return View(categoryValue);
         }
 
-        //[HttpPost]
-        //public ActionResult EditCategory(Category p)
-        //{
-        //    cm.CategoryUpdate(p);
-        //    RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public ActionResult EditCategory(Category p)
+        {
+            cm.CategoryUpdate(p);
+            return RedirectToAction("Index");
+        }
     }
 }

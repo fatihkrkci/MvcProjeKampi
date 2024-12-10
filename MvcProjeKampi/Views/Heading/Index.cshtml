@@ -1,0 +1,169 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int counter = 0;
+}
+@{
+    string color = "";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Başlık İşlemleri</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Admin Paneli</a></li>
+                    <li class="breadcrumb-item active">Başlık İşlemleri</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title m-0">Başlık Listesi</h3>
+        <a class="btn btn-primary ml-auto" href="/Heading/AddHeading">Yeni Başlık Ekle</a>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+                        #
+                    </th>
+                    <th style="width: 20%">
+                        Başlık Adı
+                    </th>
+                    <th style="width: 30%">
+                        Oluşturan Yazar
+                    </th>
+                    <th style="width: 8%" class="text-center">
+                        Kategori
+                    </th>
+                    <th style="width: 20%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Category.CategoryName == "Tiyatro")
+                    {
+                        color = "badge badge-warning";
+                    }
+                    if (item.Category.CategoryName == "Spor")
+                    {
+                        color = "badge badge-success";
+                    }
+                    if (item.Category.CategoryName == "Yazılım")
+                    {
+                        color = "badge badge-info";
+                    }
+                    if (item.Category.CategoryName == "Seyahat")
+                    {
+                        color = "badge badge-secondary";
+                    }
+                    if (item.Category.CategoryName == "Dizi")
+                    {
+                        color = "badge badge-danger";
+                    }
+                    if (item.Category.CategoryName == "Film")
+                    {
+                        color = "badge badge-primary";
+                    }
+                    if (item.Category.CategoryName == "Kitap")
+                    {
+                        color = "badge badge-info";
+                    }
+
+                    counter++;
+                    <tr>
+                        <td>
+                            @counter
+                        </td>
+                        <td>
+                            <a>
+                                @item.HeadingName
+                            </a>
+                            <br />
+                            <small>
+                                @item.HeadingDate.ToString("dd.MM.yyyy | HH:mm")
+                            </small>
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage" style="width:50px; height: 50px; object-fit:cover">
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="project-state">
+                            <span class="@color">@item.Category.CategoryName</span>
+                        </td>
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="#">
+                                <i class="fas fa-folder">
+                                </i>
+                                İçerikler
+                            </a>
+                            <a class="btn btn-info btn-sm" href="#">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Düzenle
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="#">
+                                <i class="fas fa-trash">
+                                </i>
+                                Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h3 class="card-title m-0">Başlık Listesi</h3>
+            <a class="btn btn-primary ml-auto" href="/Heading/AddHeading">Yeni Başlık Ekle</a>
+        </div>
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık Adı</th>
+                        <th>Kategorisi</th>
+                        <th>Yazarı</th>
+                        <th>Seçenekler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        counter++;
+                        <tr>
+                            <th>@counter</th>
+                            <td>@item.HeadingName</td>
+                            <td>@item.Category.CategoryName</td>
+                            <td>@item.Writer.WriterName @item.Writer.WriterSurname</td>
+                            <td>
+                                <a class="btn btn-primary" href="#">Başlıklar</a>
+                                <a class="btn btn-warning" href="/Heading/EditHeading/@item.HeadingId">Güncelle</a>
+                                <a class="btn btn-danger" href="/Heading/DeleteHeading/@item.HeadingId">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>*@
