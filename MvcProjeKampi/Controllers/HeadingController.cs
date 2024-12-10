@@ -52,38 +52,42 @@ namespace MvcProjeKampi.Controllers
             return RedirectToAction("Index");
         }
 
-        //public ActionResult DeleteCategory(int id)
-        //{
-        //    var categoryValue = cm.GetById(id);
-        //    cm.CategoryDelete(categoryValue);
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult DeleteHeading(int id)
+        {
+            var headingValue = hm.GetById(id);
+            headingValue.HeadingStatus = false;
+            hm.HeadingUpdate(headingValue);
+            return RedirectToAction("Index");
+        }
 
-        //[HttpGet]
-        //public ActionResult EditWriter(int id)
-        //{
-        //    var writerValue = wm.GetById(id);
-        //    return View(writerValue);
-        //}
+        public ActionResult HeadingStatusToTrue(int id)
+        {
+            var headingValue = hm.GetById(id);
+            headingValue.HeadingStatus = true;
+            hm.HeadingUpdate(headingValue);
+            return RedirectToAction("Index");
+        }
 
-        //[HttpPost]
-        //public ActionResult EditWriter(Writer p)
-        //{
-        //    WriterValidator validator = new WriterValidator();
-        //    ValidationResult results = validator.Validate(p);
-        //    if (results.IsValid)
-        //    {
-        //        wm.WriterUpdate(p);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        foreach (var item in results.Errors)
-        //        {
-        //            ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-        //        }
-        //    }
-        //    return View();
-        //}
+        [HttpGet]
+        public ActionResult EditHeading(int id)
+        {
+            List<SelectListItem> categories = (from x in cm.GetList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.CategoryName,
+                                                   Value = x.CategoryId.ToString()
+                                               }).ToList();
+            ViewBag.Categories = categories;
+
+            var headingValue = hm.GetById(id);
+            return View(headingValue);
+        }
+
+        [HttpPost]
+        public ActionResult EditHeading(Heading p)
+        {
+            hm.HeadingUpdate(p);
+            return RedirectToAction("Index");
+        }
     }
 }
