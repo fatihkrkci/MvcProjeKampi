@@ -143,6 +143,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -2010,6 +2011,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\amsterdam.jpg" />
+    <Content Include="Images\berlin.jpg" />
+    <Content Include="Images\helsinki.jpg" />
+    <Content Include="Images\lisbon.jpg" />
+    <Content Include="Images\madrid.jpg" />
+    <Content Include="Images\milano.jpg" />
+    <Content Include="Images\moskova.jpg" />
+    <Content Include="Images\newyork.jpg" />
+    <Content Include="Images\paris.jpg" />
+    <Content Include="Images\roma.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -2320,6 +2331,7 @@
     <Content Include="Views\Message\GetMessageDetails.cshtml" />
     <Content Include="Views\Message\NewMessage.cshtml" />
     <Content Include="Views\ErrorPage\Page404.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
