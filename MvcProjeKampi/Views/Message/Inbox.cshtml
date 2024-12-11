@@ -71,7 +71,14 @@
                                             <label for="check1"></label>
                                         </div>
                                     </td>
-                                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                    @if (item.IsRead == false)
+                                    {
+                                        <td class=""><a href="/Message/IsReadTrue/@item.MessageId" title="Okundu Olarak İşaretle"><i class="fas fa-check text-success"></i></a></td>
+                                    }
+                                    @if (item.IsRead == true)
+                                    {
+                                        <td class=""><a href="/Message/IsReadFalse/@item.MessageId" title="Okunmadı Olarak İşaretle"><i class="fas fa-window-close text-danger"></i></a></td>
+                                    }
                                     <td class="mailbox-name"><a href="/Message/GetMessageDetails/@item.MessageId">@item.SenderMail</a></td>
                                     <td class="mailbox-subject">
                                         <b>@item.Subject</b> - @Html.Raw(item.MessageContent.Substring(0, 30))...

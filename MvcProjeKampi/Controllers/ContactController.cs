@@ -39,6 +39,9 @@ namespace MvcProjeKampi.Controllers
             var sendboxCount = mm.GetListSendbox().Count();
             ViewBag.SendboxCount = sendboxCount;
 
+            var unreadMessages = mm.GetListInbox().Where(x => x.IsRead == false).ToList().Count();
+            ViewBag.UnreadMessages = unreadMessages;
+
             return PartialView();
         }
     }

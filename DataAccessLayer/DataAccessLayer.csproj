@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
     <Compile Include="Concrete\Repositories\WriterRepository.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
@@ -112,6 +114,14 @@
     <Compile Include="Migrations\202412112115159_mig11.Designer.cs">
       <DependentUpon>202412112115159_mig11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412112138528_mig12.cs" />
+    <Compile Include="Migrations\202412112138528_mig12.Designer.cs">
+      <DependentUpon>202412112138528_mig12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412112242083_mig13.cs" />
+    <Compile Include="Migrations\202412112242083_mig13.Designer.cs">
+      <DependentUpon>202412112242083_mig13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412112115159_mig11.resx">
       <DependentUpon>202412112115159_mig11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412112138528_mig12.resx">
+      <DependentUpon>202412112138528_mig12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412112242083_mig13.resx">
+      <DependentUpon>202412112242083_mig13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
