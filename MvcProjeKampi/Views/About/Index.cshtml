@@ -43,10 +43,10 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th>@item.AboutDetail1</th>
-                        <th>@item.AboutDetail2</th>
-                        <th>@item.AboutImage1</th>
-                        <th>@item.AboutImage2</th>
+                        <td>@item.AboutDetail1</td>
+                        <td>@item.AboutDetail2</td>
+                        <td>@item.AboutImage1</td>
+                        <td>@item.AboutImage2</td>
                         <td>
                             <a class="btn btn-success" href="#">Aktif Yap</a>
                             <a class="btn btn-danger" href="#">Pasif Yap</a>
@@ -58,36 +58,4 @@
     </div>
 </div>
 
-<div class="modal" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Hakkımızda Yazı Girişi</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post" action="/About/AddAbout/">
-                <div class="modal-body">
-                    <label>Hakkımda Metin 1</label>
-                    <textarea name="AboutDetail1" class="form-control"></textarea>
-                    <br />
-                    <label>Hakkımda Metin 2</label>
-                    <textarea name="AboutDetail2" class="form-control"></textarea>
-                    <br />
-                    <label>Hakkımda Görsel 1</label>
-                    <input name="AboutImage1" class="form-control" />
-                    <br />
-                    <label>Hakkımda Görsel 2</label>
-                    <input name="AboutImage2" class="form-control" />
-                    <br />
-                </div>
-
-                <div class="modal-footer justify-content-between">
-                    <button class="btn btn-default" data-dismiss="modal">Vazgeç</button>
-                    <button class="btn btn-primary">Kaydet</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@Html.Action("AboutPartial", "About")

@@ -1,0 +1,66 @@
+﻿@model EntityLayer.Concrete.Message
+
+@{
+    ViewBag.Title = "NewMessage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">İletişim & Mesaj</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Admin Paneli</a></li>
+                    <li class="breadcrumb-item active">İletişim & Mesaj</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.Action("SidebarPartial", "Contact")
+    <div class="col-md-9">
+        @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
+        {
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Yeni Mesaj Oluştur</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control", placeholder = "Alıcı:" })
+                        @Html.ValidationMessageFor(x => x.ReceiverMail, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", placeholder = "Konu:" })
+                        @Html.ValidationMessageFor(x => x.Subject, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.MessageContent, new { @class = "form-control", id= "compose-textarea", placeholder = "Mesajınız:" })
+                        @Html.ValidationMessageFor(x => x.MessageContent, "", new { @class = "text-danger" })
+                        @*<textarea id="" class="form-control" style="height: 300px"></textarea>*@
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-default btn-file">
+                            <i class="fas fa-paperclip"></i> Dosya Ekle
+                            <input type="file" name="attachment">
+                        </div>
+                        <p class="help-block">Max. 32MB</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslak Olarak Kaydet</button>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                    </div>
+                    <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Vazgeç</button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
