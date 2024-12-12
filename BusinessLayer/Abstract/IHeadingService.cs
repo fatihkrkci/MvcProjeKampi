@@ -12,8 +12,9 @@ namespace BusinessLayer.Abstract
         List<Heading> GetList();
         void HeadingAdd(Heading heading);
         Heading GetById(int id);
+        List<Heading> GetByWriterMail(string mail);
         void HeadingDelete(Heading heading);
         void HeadingUpdate(Heading heading);
-        List<Heading> GetListByWriter();
+        List<Heading> GetListByWriter(int id);
     }
 }

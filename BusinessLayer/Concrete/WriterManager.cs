@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,26 @@ namespace BusinessLayer.Concrete
             return _writerDal.Get(x => x.WriterId == id);
         }
 
+        public Writer GetByMail(string mail)
+        {
+            return _writerDal.Get(x => x.WriterMail == mail);
+        }
+
         public List<Writer> GetList()
         {
             return _writerDal.List();
+        }
+
+        public Writer GetWriter(string mail, string password)
+        {
+            var infos = _writerDal.Get(x => x.WriterMail == mail);
+
+            if (infos == null)
+            {
+                return null;
+            }
+
+            return infos;
         }
 
         public void WriterAdd(Writer writer)

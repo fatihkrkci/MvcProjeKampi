@@ -11,9 +11,11 @@ using System.Web.Security;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         AdminManager adm = new AdminManager(new EfAdminDal());
+        WriterManager wm = new WriterManager(new EfWriterDal());
 
         [HttpGet]
         public ActionResult Index()
@@ -30,6 +32,29 @@ namespace MvcProjeKampi.Controllers
                 FormsAuthentication.SetAuthCookie(adminUserInfo.AdminUsername, false);
                 Session["AdminUsername"] = adminUserInfo.AdminUsername;
                 return RedirectToAction("Index", "AdminCategory");
+            }
+            else
+            {
+                TempData["LoginError"] = "Kullanıcı adı veya şifre hatalı!";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult WriterLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WriterLogin(Writer p)
+        {
+            var writerUserInfo = wm.GetWriter(p.WriterMail, p.WriterPassword);
+            if (writerUserInfo != null)
+            {
+                FormsAuthentication.SetAuthCookie(writerUserInfo.WriterMail, false);
+                Session["WriterMail"] = writerUserInfo.WriterMail;
+                return RedirectToAction("MyContent", "WriterPanelContent");
             }
             else
             {
