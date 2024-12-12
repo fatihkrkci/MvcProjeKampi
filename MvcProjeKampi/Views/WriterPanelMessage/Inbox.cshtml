@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Inbox";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
 <div class="content-header">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="row">
-    @Html.Action("SidebarPartial", "Contact")
+    @Html.Action("MessageListMenu", "WriterPanelMessage")
     <div class="col-md-9">
         <div class="card card-primary card-outline">
             <div class="card-header">
@@ -79,7 +79,7 @@
                                     {
                                         <td class=""><a href="/Message/IsReadFalse/@item.MessageId" title="Okunmadı Olarak İşaretle"><i class="fas fa-window-close text-danger"></i></a></td>
                                     }
-                                    <td class="mailbox-name"><a href="/Message/GetInboxMessageDetails/@item.MessageId">@item.SenderMail</a></td>
+                                    <td class="mailbox-name"><a href="/WriterPanelMessage/GetInboxMessageDetails/@item.MessageId">@item.SenderMail</a></td>
                                     <td class="mailbox-subject">
                                         <b>@item.Subject</b> - @Html.Raw(item.MessageContent.Substring(0, 30))...
                                     </td>

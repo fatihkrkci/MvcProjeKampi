@@ -2,7 +2,6 @@
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-using FluentValidation;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -12,16 +11,20 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class MessageController : Controller
+    public class WriterPanelMessageController : Controller
     {
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator validator = new MessageValidator();
 
-        [Authorize]
         public ActionResult Inbox()
         {
             var messageList = mm.GetListInbox();
             return View(messageList);
+        }
+
+        public PartialViewResult MessageListMenu()
+        {
+            return PartialView();
         }
 
         public ActionResult Sendbox()
@@ -57,6 +60,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = validator.Validate(p);
             if (results.IsValid)
             {
+                p.SenderMail = "gizem@hotmail.com";
                 p.MessageDate = DateTime.Now;
                 p.MessageContent = HttpUtility.HtmlEncode(p.MessageContent);
                 mm.MessageAdd(p);
@@ -70,22 +74,6 @@ namespace MvcProjeKampi.Controllers
                 }
             }
             return View();
-        }
-
-        public ActionResult IsReadTrue(int id)
-        {
-            var message = mm.GetById(id);
-            message.IsRead = true;
-            mm.MessageUpdate(message);
-            return RedirectToAction("Inbox");
-        }
-
-        public ActionResult IsReadFalse(int id)
-        {
-            var message = mm.GetById(id);
-            message.IsRead = false;
-            mm.MessageUpdate(message);
-            return RedirectToAction("Inbox");
         }
     }
 }

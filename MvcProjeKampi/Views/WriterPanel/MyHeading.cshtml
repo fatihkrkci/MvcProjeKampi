@@ -121,7 +121,7 @@
                             </a>
                             @if (item.HeadingStatus == true)
                             {
-                                <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingId">
+                                <a class="btn btn-danger btn-sm" href="/WriterPanel/DeleteHeading/@item.HeadingId">
                                     <i class="fas fa-trash">
                                     </i>
                                     Pasif Yap
@@ -129,7 +129,7 @@
                             }
                             @if (item.HeadingStatus == false)
                             {
-                                <a class="btn btn-success btn-sm" href="/Heading/HeadingStatusToTrue/@item.HeadingId">
+                                <a class="btn btn-success btn-sm" href="/WriterPanel/HeadingStatusToTrue/@item.HeadingId">
                                     <i class="fas fa-check">
                                     </i>
                                     Aktif Yap

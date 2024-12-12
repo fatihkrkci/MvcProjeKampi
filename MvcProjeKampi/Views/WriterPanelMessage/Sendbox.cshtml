@@ -2,8 +2,8 @@
 @model List<Message>
 
 @{
-    ViewBag.Title = "Inbox";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Sendbox";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
 <div class="content-header">
@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Admin Paneli</a></li>
+                    <li class="breadcrumb-item"><a href="#">Yazar Paneli</a></li>
                     <li class="breadcrumb-item active">İletişim & Mesaj</li>
                 </ol>
             </div>
@@ -23,11 +23,11 @@
 </div>
 
 <div class="row">
-    @Html.Action("SidebarPartial", "Contact")
+    @Html.Action("MessageListMenu", "WriterPanelMessage")
     <div class="col-md-9">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title">Kullanıcılardan Gelen Direkt Mesajlar</h3>
+                <h3 class="card-title">Kullanıcılara Gönderdiğim Direkt Mesajlar</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
@@ -71,15 +71,8 @@
                                             <label for="check1"></label>
                                         </div>
                                     </td>
-                                    @if (item.IsRead == false)
-                                    {
-                                        <td class=""><a href="/Message/IsReadTrue/@item.MessageId" title="Okundu Olarak İşaretle"><i class="fas fa-check text-success"></i></a></td>
-                                    }
-                                    @if (item.IsRead == true)
-                                    {
-                                        <td class=""><a href="/Message/IsReadFalse/@item.MessageId" title="Okunmadı Olarak İşaretle"><i class="fas fa-window-close text-danger"></i></a></td>
-                                    }
-                                    <td class="mailbox-name"><a href="/Message/GetInboxMessageDetails/@item.MessageId">@item.SenderMail</a></td>
+                                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                    <td class="mailbox-name"><a href="/WriterPanelMessage/GetSendboxMessageDetails/@item.MessageId">@item.ReceiverMail</a></td>
                                     <td class="mailbox-subject">
                                         <b>@item.Subject</b> - @Html.Raw(item.MessageContent.Substring(0, 30))...
                                     </td>
