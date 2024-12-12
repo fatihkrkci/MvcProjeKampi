@@ -6,7 +6,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Admin Girişi | MVC Proje Kampı</title>
+    <title>Admin Kayıt Ekranı | MVC Proje Kampı</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
                         <div class="img d-flex align-items-center justify-content-center" style="background-image: url(/login-form-19/images/bg.jpg);"></div>
                         <h3 class="text-center mb-0">HOŞ GELDİNİZ</h3>
                         <p class="text-center">Lütfen bilgilerinizi ilgili alanlara giriniz.</p>
-                        @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                        @using (Html.BeginForm("Index", "Register", FormMethod.Post))
                         {
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
@@ -33,19 +33,14 @@
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
                                 <input type="password" class="form-control" name="AdminPassword" placeholder="Şifre" required>
                             </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-100 text-md-right">
-                                    <a href="#">Şifremi Unuttum</a>
-                                </div>
-                            </div>
                             <div class="form-group">
-                                <button type="submit" class="btn form-control btn-primary rounded submit px-3 swalDefaultError">Giriş Yap</button>
+                                <button type="submit" class="btn form-control btn-primary rounded submit px-3 swalDefaultError">Kayıt Ol</button>
                             </div>
                         }
-                    <div class="w-100 text-center mt-4 text">
-                        Hesabınız Yok Mu?
-                        <a href="/Register/Index/"> Kayıt Ol</a>
-                    </div>
+                        <div class="w-100 text-center mt-4 text">
+                            Hesabınız Var Mı?
+                            <a href="/Login/Index/"> Giriş Yap</a>
+                        </div>
                     </div>
                 </div>
             </div>
