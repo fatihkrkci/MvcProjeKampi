@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,7 +19,8 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Inbox()
         {
-            var messageList = mm.GetListInbox();
+            string p = (string)Session["WriterMail"];
+            var messageList = mm.GetListInbox(p);
             return View(messageList);
         }
 
@@ -29,7 +31,8 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Sendbox()
         {
-            var messageList = mm.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var messageList = mm.GetListSendbox(p);
             return View(messageList);
         }
 
@@ -57,10 +60,12 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p)
         {
+            string sender = (string)Session["WriterMail"];
+
             ValidationResult results = validator.Validate(p);
             if (results.IsValid)
             {
-                p.SenderMail = "gizem@hotmail.com";
+                p.SenderMail = sender;
                 p.MessageDate = DateTime.Now;
                 p.MessageContent = HttpUtility.HtmlEncode(p.MessageContent);
                 mm.MessageAdd(p);

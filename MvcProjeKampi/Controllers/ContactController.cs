@@ -28,18 +28,18 @@ namespace MvcProjeKampi.Controllers
             return View(contactValue);
         }
 
-        public PartialViewResult SidebarPartial()
+        public PartialViewResult SidebarPartial(string p)
         {
             var contactCount = cm.GetList().Count();
             ViewBag.ContactCount = contactCount;
 
-            var inboxCount = mm.GetListInbox().Count();
+            var inboxCount = mm.GetListInbox(p).Count();
             ViewBag.InboxCount = inboxCount;
 
-            var sendboxCount = mm.GetListSendbox().Count();
+            var sendboxCount = mm.GetListSendbox(p).Count();
             ViewBag.SendboxCount = sendboxCount;
 
-            var unreadMessages = mm.GetListInbox().Where(x => x.IsRead == false).ToList().Count();
+            var unreadMessages = mm.GetListInbox(p).Where(x => x.IsRead == false).ToList().Count();
             ViewBag.UnreadMessages = unreadMessages;
 
             return PartialView();
