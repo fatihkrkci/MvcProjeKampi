@@ -1,0 +1,58 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Yetkilendirme İşlemleri</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Admin Paneli</a></li>
+                    <li class="breadcrumb-item active">Yetkilendirme İşlemleri</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title m-0">Kategori Listesi</h3>
+        <a class="btn btn-primary ml-auto" href="/Authorization/AddAdmin">Yeni Admin Tanımla</a>
+    </div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Kullanıcı Mail</th>
+                    <th>Yetki</th>
+                    <th>Durum</th>
+                    <th>Seçenekler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.AdminId</th>
+                        <td>@item.AdminUsername</td>
+                        <td>@item.AdminRole</td>
+                        <td>Aktif</td>
+                        <td>
+                            <a class="btn btn-warning" href="/Authorization/EditAdmin/@item.AdminId">Yetkisini Değiştir</a>
+                            <a class="btn btn-danger" href="#">Pasif Yap</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

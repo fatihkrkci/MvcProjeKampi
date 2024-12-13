@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.Admin
+
+@{
+    ViewBag.Title = "EditAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Yetkilendirme İşlemleri</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Admin Paneli</a></li>
+                    <li class="breadcrumb-item"><a href="#">Yetkilendirme İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Yetki Değiştir</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Yetki Değiştir</h3>
+    </div>
+    @using (Html.BeginForm("EditAdmin", "Authorization", FormMethod.Post))
+    {
+        <div class="card-body">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.AdminId)
+                @Html.Label("Kullanıcı Adı")
+                @Html.TextBoxFor(x => x.AdminUsername, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Şifre")
+                @Html.TextAreaFor(x => x.AdminPassword, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Rolü Seçiniz")
+                @Html.TextAreaFor(x => x.AdminRole, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    }
+</div>
